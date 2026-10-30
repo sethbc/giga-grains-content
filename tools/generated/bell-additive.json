@@ -1,0 +1,15 @@
+{
+  "mode": "fx",
+  "sampleRate": 48000,
+  "durationSeconds": 9.0,
+  "blockSize": 128,
+  "seed": 1,
+  "input": {"kind": "sine", "frequencyHz": 440, "seconds": 0.6, "amplitude": 0.5},
+  "channels": 1,
+  "params": {"Mix": 0.6, "Size": -1.0, "Density": 5.0, "Spray": 0.0, "Stereo": 0.3,
+             "Pitch": -12,
+             "Layer B On": 1, "B Pitch": 3.16, "B Size": -1.0, "B Density": 5.0,
+             "Layer C On": 1, "C Pitch": 7.02, "C Size": -1.0, "C Density": 5.0, "Level C": -6,
+             "Layer D On": 1, "D Pitch": 17.57, "D Size": -1.0, "D Density": 5.0, "Level D": -9,
+             "Reverb Amount": 0.8, "Reverb Decay": 2.5, "Reverb Size": 0.8, "Reverb Damping": 0.5}
+}

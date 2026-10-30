@@ -1,0 +1,38 @@
+# kind	output (under Samples/)	source (a VCSL path, or a spec)	SHA-256 of the download (- if generated)	start (s)	length (s, - for all)
+download	Strings/psaltery-c4-bowed.flac	Chordophones/Zithers/Psaltery, Bowed and Plucked/LongBow/BowedPsaltery_C4_Main_LongBow_rr1.wav	57f455c9412f2d642e8d423207aa7a12f48dde77293283d058636b08cd8fdfb0	0	7.3
+download	Strings/dan-tranh-b2-tremolo.flac	Chordophones/Zithers/Dan Tranh/Tremolo/B2_Trem_1.wav	7a0437a1911cebdc212500da927c1bdd0674e31439704ba6c928d93b27e47ce7	0	11.6
+download	Winds/tenor-sax-c3-sustain.flac	Aerophones/Reed Aerophones/Tenor Saxophone/Non-Vibrato/BrettTenor_NV_Main_C3_vl2_rr1.wav	4afeef41e7f3a5df8c47a3f31389b5948837fe8b21c9e3e9e135829e44050677	0	7.0
+download	Winds/saxello-d4-vibrato.flac	Aerophones/Reed Aerophones/Saxello/Vibrato/BrettSaxello_SusVB_MainSpirit_D4_vl2_rr1.wav	59bea15adfc32cb856eb515221aaec2e4570d0b2bfb7ff4df31465c1b2305615	0	6.4
+download	Winds/bass-recorder-d3-sustain.flac	Aerophones/Edge-blown Aerophones/Baroque Bass Recorder/Sustain/BassRecorder_Sus_D3_rr1_Main.wav	ebe2e0c4819b808137b1634d2f70888ed06a8dfc3791a5aaa656c3c754626f3c	0	8.0
+download	Winds/tenor-recorder-a4-sustain.flac	Aerophones/Edge-blown Aerophones/Baroque Tenor Recorder/Sustain/TenRecorder_Sus_A4_rr1_Main.wav	b1c958ac379c2f1b089367db1f8e11ba1e321a83a025b4432863fcd01f0fcae7	0	11.3
+download	Winds/ocarina-a3-vibrato.flac	Aerophones/Edge-blown Aerophones/Ocarina, Typical/Sustains/SusVib/StdOcarina_SusVib_A3.wav	ce0c2d4c4f60558ba3b8bf91f23912c4be95da3902f520cf856ca5ca3f9c179f	0	10.2
+download	Winds/renaissance-organ-c3-8ft.flac	Aerophones/Edge-blown Aerophones/Renaissance Organ/8'/RenOrgan_8foot_Room_C3_rr1.wav	90e36226d3448f39800afd68aad68f1902cb280899430789cb77d1ab93bdbb34	0	8.1
+download	Winds/harmonica-c4-sustain.flac	Aerophones/Free Aerophones/Harmonica-Hohner-Super64/Sustains/Accented/Hohner-Super64_Accented_C4.wav	c96fe47573e956894ada2c4c4f2033092b6b48bba676e8239e547e35d645d9e5	0	3.9
+download	Winds/didgeridoo-drone.flac	Aerophones/Lip Aerophones/Didgeridoo/Didgeridoo1_Phrase3_Main.wav	ddcf9bf25aa9f0bedac3c6ae5cb77e4d68913f2322b20ac8c10165ee3c753835	0	10
+download	Mallets/vibraphone-d4-bowed.flac	Idiophones/Struck Idiophones/Vibraphone/Bowed/Vibes_bowed_D4_rr1_Main.wav	b5a6ab0a6c51b446832bc3686e27a62489f3169182ad4c872698912536d1ece6	0.4	10.0
+download	Mallets/vibraphone-b3-soft-mallet.flac	Idiophones/Struck Idiophones/Vibraphone/Soft Mallets/Vibes_soft_B3_v2_rr1_Main.wav	9d2466c4d3375f2eb24c57f17e15736052a5492d6c84b876c1d0a4997eea99a0	0	8.8
+download	Mallets/marimba-c2.flac	Idiophones/Struck Idiophones/Marimba/Marimba_hit_Outrigger_C2_med_01.wav	fd9c329513ed9d54c36174bbe45add471a80ffad411c686428bbf0bbc0121438	0	3.0
+download	Mallets/tubular-bell-c4.flac	Idiophones/Struck Idiophones/Tubular Bells 1/chimes_C4_p_rr1.wav	c0f357155823646012c5d86628eedf122f162f813bfeed7337e72bf1a8d37c63	0	12
+download	Mallets/hand-chime-c4.flac	Idiophones/Struck Idiophones/Hand Chimes/sus_C4_r01_main.wav	89980f18db9e08a137d1fc18f0505281bd6c192021b9dd33dafb7d3117ef608c	0	5.4
+download	Mallets/wine-glass-ds4-rubbed.flac	Idiophones/Friction Idiophones/Wine Glasses/Sustains/Slow/glass1_D#4_Slow_1_Main.wav	6cdc2f602fac912a768561b3831ebb9099c884cb5ea76c88befedf545bab1997	0	12
+download	Mallets/gong-soft.flac	Idiophones/Struck Idiophones/Gong 1/gong_p.wav	3d103e1a7af12eeb17e0c5488f11933ca92b9fbdefa39b8020b64238da2db0d0	0	14
+download	Mallets/nepalese-hand-bell.flac	Idiophones/Struck Idiophones/Hand Bells, Nepalese/HB_1.wav	46e19962db5cb9b339f22609f1c529cd187249c36f3bcd05d4002179c403c222	0	2.9
+download	Plucked/harp-c3.flac	Chordophones/Composite Chordophones/Concert Harp/KSHarp_C3_mf3.wav	18e6222e8fc11a8106e8d7a875d208835eb5b45598f010b21c786b1482e09869	0	8.0
+download	Plucked/kalimba-b1.flac	Idiophones/Plucked Idiophones/Kalimba, Tanzania/MBira3_pluck_Main_B1_k13_50_100_rr2.wav	ce548b5b3cb20b0306dfee89d0c6ef87cb912b898c5314bc3e19ab512e7d0c7b	0	3.3
+download	Plucked/mbira-b2.flac	Idiophones/Plucked Idiophones/Mbira dzaVadzimu Nyamaropa, Zimbabwe, Low B/MBira4_pluck_Main_B2_13_50_100_rr3.wav	0509244407cbf05ab4c46747569d216e6c8738010d17df52a8617fa30f458266	0	3.0
+download	Plucked/psaltery-c4-plucked.flac	Chordophones/Zithers/Psaltery, Bowed and Plucked/Pluck/BowedPsaltery_C4_Main_Pluck_rr1.wav	752e4863fd3a0dad6a9ee78099d2aed57e3bee7842fe67b4b360072886b6e200	0	3.6
+download	Plucked/piano-c3.flac	Chordophones/Zithers/Grand Piano, Steinway B/Sus/JHPiano_Sus_Close_C3_vl3_rr1.wav	9910a6e13c4572d78ed336f053132b3b806fa0483cc32a52730fdf18b4e72489	0	9
+download	Textures/ocean-drum.flac	Membranophones/Other Membranophones/Ocean Drum/OceanDrum_Sus_1_Mid.wav	ecb2134b5a34c2d7f064cc7c81e7f76e829ef981bd6ece53816536e352dcda2b	0.3	10
+download	Textures/cymbal-bowed.flac	Idiophones/Struck Idiophones/Suspended Cymbal 1/susCymb1_bow_17.wav	cf4685cc2014df328166ff9c73f3b89f49106cdf41737d228ba1b3d78b3e9e79	0	12.4
+download	Textures/cymbal-roll.flac	Idiophones/Struck Idiophones/Suspended Cymbal 2/susCymb2_roll_pp1_nloop.wav	bde4f1dae6235d578264557a08cef719465f24c944e429ae330e8641f178eaec	0	10
+download	Textures/timpani-roll.flac	Membranophones/Struck Membranophones/Timpani 1/Roll/Timpani1_Roll_v3_rr1_Sum.wav	834f3fcf28a546d854cf3e331cde3d14da68788d130ca306a2ef6f975230566a	0	10
+download	Textures/dan-tranh-gliss-down.flac	Chordophones/Zithers/Dan Tranh/Gliss/Gliss_Dwn_Slw_mf_2.wav	589aad291c2d4de25663a0d86121cd8f722ff19900459133e8d057061c04fdd0	0	7.0
+generated	Generated/sweep-up.flac	tools/generated/sweep-up.json	-	0	-
+generated	Generated/sweep-down.flac	tools/generated/sweep-down.json	-	0	-
+generated	Generated/noise-bed-white.flac	tools/generated/noise-bed-white.json	-	0	-
+generated	Generated/noise-bed-dark.flac	tools/generated/noise-bed-dark.json	-	0	-
+generated	Generated/bell-additive.flac	tools/generated/bell-additive.json	-	0	-
+generated	Generated/drone-organ.flac	tools/generated/drone-organ.json	-	0	-
+generated	Generated/drone-glass.flac	tools/generated/drone-glass.json	-	0	-
+generated	Generated/drone-vibraphone-frozen.flac	tools/generated/drone-vibraphone-frozen.json	-	0	-
+generated	Generated/drone-sine-cluster.flac	tools/generated/drone-sine-cluster.json	-	0	-
