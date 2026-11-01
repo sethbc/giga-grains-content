@@ -4,18 +4,25 @@ Every file under `Samples/` is listed here, one section per file, with where it 
 license and how it was made. `tools/make-samples.sh` writes this file from `tools/select.tsv`
 as it makes the samples, so the record and the files agree.
 
-- **Downloads** come from the [Versilian Community Sample Library](https://github.com/sgossner/VCSL)
-  (VCSL) at commit `c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e`, whose `LICENSE` is the CC0-1.0 legal code
-  (https://github.com/sgossner/VCSL/blob/c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e/LICENSE) and whose README states "This
-  collection is under a Creative Commons 0 license". Each was fetched by its raw URL at that
-  commit and checked against the SHA-256 recorded below.
+- **Downloads** come from two libraries by Versilian Studios, each fetched by its raw URL at
+  one commit and checked against the SHA-256 recorded below:
+  - the [Versilian Community Sample Library](https://github.com/sgossner/VCSL) (VCSL) at commit
+    `c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e`, whose `LICENSE` is the CC0-1.0 legal code
+    (https://github.com/sgossner/VCSL/blob/c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e/LICENSE) and whose README states "This
+    collection is under a Creative Commons 0 license";
+  - [VS Chamber Orchestra: Community Edition](https://github.com/sgossner/VSCO-2-CE) (VSCO 2: CE) at
+    commit `440300901dfe9275fd84e0b7763af1f8443ae62e`, whose `LICENSE` is the CC0 1.0 Universal legal code
+    (https://github.com/sgossner/VSCO-2-CE/blob/440300901dfe9275fd84e0b7763af1f8443ae62e/LICENSE). Its `Readme.txt` asks for
+    credit to "Versilian Studios/Sam Gossner, and/or Ivy Audio/Simon Dalzell where applicable",
+    which each of its sections below gives, and asks that the samples not be sold directly:
+    this collection is free.
 - **Generated** files were rendered by Giga Grains' own `gg-render`
   (https://github.com/sethbc/giga-grains) from the spec in `tools/generated/`, by the Giga
   Grains authors, who dedicate them to the public domain under CC0-1.0 (`LICENSE`).
 - **Processing** (every file): trimmed, faded in and out over 10 ms, peak-normalized to -1 dBFS
   (the gain is -1 dB minus ffmpeg's `volumedetect` maximum of the trimmed, faded audio) and
   encoded with `flac -8`, with ffmpeg 9.0.2 and flac 1.5.0. Rates and channels
-  are the source's.
+  are the source's. A file an earlier release shipped keeps its bytes and its section here.
 
 Nothing here is a recording of the Giga Grains authors', and nothing lacks a CC0 statement.
 
@@ -567,3 +574,213 @@ Nothing here is a recording of the Giga Grains authors', and nothing lacks a CC0
 - **Sample rate:** 48000 Hz
 - **Channels:** 2
 - **Seconds:** 12.000
+
+### Samples/Strings/violin-c4-vibrato.flac
+
+- **Source:** download
+- **URL:** https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Strings/Solo%20Violin/Arco%20Vib/LLVln_ArcoVib_C4_p.wav
+- **VSCO 2: CE path:** `Strings/Solo Violin/Arco Vib/LLVln_ArcoVib_C4_p.wav` at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Author:** Versilian Studios LLC (VSCO 2: CE; recorded by Sam Gossner & Simon Dalzell, sample cutting by Elan Hickler/Soundemote)
+- **License:** CC0-1.0; the statement is VSCO 2: CE's `LICENSE` (CC0 1.0 Universal) at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Download SHA-256:** `592ebf4404ccafc7164c13cc543911ba9a2fe5f5e70dbb200807e2ae37b25035`
+- **Processing:** `ffmpeg -nostdin -i <source> -af "atrim=start=0:duration=13.0,asetpts=PTS-STARTPTS,afade=t=in:d=0.01,afade=t=out:st=12.990000:d=0.01,volume=17.9dB" -c:a pcm_s16le -bitexact -map_metadata -1 violin-c4-vibrato.wav`, then `flac -8 -o Samples/Strings/violin-c4-vibrato.flac violin-c4-vibrato.wav` (measured peak before gain: -18.9 dBFS)
+- **SHA-256:** `1a335cc2450f25b03c2212db7d0d4b37fdc6a207dc446fe3f0e8d9f8cebf257c`
+- **Bytes:** 1128904
+- **Sample rate:** 44100 Hz
+- **Channels:** 2
+- **Seconds:** 13.000
+
+### Samples/Strings/violin-section-g3-vibrato.flac
+
+- **Source:** download
+- **URL:** https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Strings/Violin%20Section/susVib/VlnEns_susVib_G2_v2.wav
+- **VSCO 2: CE path:** `Strings/Violin Section/susVib/VlnEns_susVib_G2_v2.wav` at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Author:** Versilian Studios LLC (VSCO 2: CE; recorded by Sam Gossner & Simon Dalzell, sample cutting by Elan Hickler/Soundemote)
+- **License:** CC0-1.0; the statement is VSCO 2: CE's `LICENSE` (CC0 1.0 Universal) at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Download SHA-256:** `c0b06a23f0245c042f0609dc0db704adc14bfc9ea8a34cb5c97d80096715a0e6`
+- **Processing:** `ffmpeg -nostdin -i <source> -af "atrim=start=0:duration=12.0,asetpts=PTS-STARTPTS,afade=t=in:d=0.01,afade=t=out:st=11.990000:d=0.01,volume=16.8dB" -c:a pcm_s16le -bitexact -map_metadata -1 violin-section-g3-vibrato.wav`, then `flac -8 -o Samples/Strings/violin-section-g3-vibrato.flac violin-section-g3-vibrato.wav` (measured peak before gain: -17.8 dBFS)
+- **SHA-256:** `07108eafc6c3e749edd868ec2b266b1cd66a5b83b722b75ad44f9b27e89c0e6e`
+- **Bytes:** 1148451
+- **Sample rate:** 44100 Hz
+- **Channels:** 2
+- **Seconds:** 12.000
+
+### Samples/Strings/viola-section-c3-vibrato.flac
+
+- **Source:** download
+- **URL:** https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Strings/Viola%20Section/susvib/ViolaEns_susvib_C2_v2_1.wav
+- **VSCO 2: CE path:** `Strings/Viola Section/susvib/ViolaEns_susvib_C2_v2_1.wav` at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Author:** Versilian Studios LLC (VSCO 2: CE; recorded by Sam Gossner & Simon Dalzell, sample cutting by Elan Hickler/Soundemote)
+- **License:** CC0-1.0; the statement is VSCO 2: CE's `LICENSE` (CC0 1.0 Universal) at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Download SHA-256:** `09db4ed2c8eda02d1f6a27258a2292b56e65e94ecc0337265bbbac5d9978dc92`
+- **Processing:** `ffmpeg -nostdin -i <source> -af "atrim=start=0:duration=8.0,asetpts=PTS-STARTPTS,afade=t=in:d=0.01,afade=t=out:st=7.990000:d=0.01,volume=9.3dB" -c:a pcm_s24le -bitexact -map_metadata -1 viola-section-c3-vibrato.wav`, then `flac -8 -o Samples/Strings/viola-section-c3-vibrato.flac viola-section-c3-vibrato.wav` (measured peak before gain: -10.3 dBFS)
+- **SHA-256:** `d16a589dc68451fbde81b24ec08ae318c12059b311ca05498c9d14652fa2e10a`
+- **Bytes:** 1459367
+- **Sample rate:** 44100 Hz
+- **Channels:** 2
+- **Seconds:** 8.000
+
+### Samples/Strings/cello-section-c2-vibrato.flac
+
+- **Source:** download
+- **URL:** https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Strings/Cello%20Section/susvib/susvib_C1_v3_1.wav
+- **VSCO 2: CE path:** `Strings/Cello Section/susvib/susvib_C1_v3_1.wav` at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Author:** Versilian Studios LLC (VSCO 2: CE; recorded by Sam Gossner & Simon Dalzell, sample cutting by Elan Hickler/Soundemote)
+- **License:** CC0-1.0; the statement is VSCO 2: CE's `LICENSE` (CC0 1.0 Universal) at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Download SHA-256:** `19195ab85ab71626bd11e7100febdaeeba1c237ff5887b934fd0ffd8dfad82cb`
+- **Processing:** `ffmpeg -nostdin -i <source> -af "atrim=start=0:duration=8.0,asetpts=PTS-STARTPTS,afade=t=in:d=0.01,afade=t=out:st=7.990000:d=0.01,volume=2.1dB" -c:a pcm_s24le -bitexact -map_metadata -1 cello-section-c2-vibrato.wav`, then `flac -8 -o Samples/Strings/cello-section-c2-vibrato.flac cello-section-c2-vibrato.wav` (measured peak before gain: -3.1 dBFS)
+- **SHA-256:** `cb126f83ab38947dae4b5e3efece69e4ea57d9935cacb2a3fcbea136d2759744`
+- **Bytes:** 1378827
+- **Sample rate:** 44100 Hz
+- **Channels:** 2
+- **Seconds:** 8.000
+
+### Samples/Strings/double-bass-e1-sustain.flac
+
+- **Source:** download
+- **URL:** https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Strings/Solo%20Contrabass/SusNV/BKCtbss_SusNV_E0_v1_rr1.wav
+- **VSCO 2: CE path:** `Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_E0_v1_rr1.wav` at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Author:** Versilian Studios LLC (VSCO 2: CE; recorded by Sam Gossner & Simon Dalzell, sample cutting by Elan Hickler/Soundemote)
+- **License:** CC0-1.0; the statement is VSCO 2: CE's `LICENSE` (CC0 1.0 Universal) at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Download SHA-256:** `b510c6c2eb4fb0acba5eaaaa703ebe19025cad3749f645c41f883e4217b338fa`
+- **Processing:** `ffmpeg -nostdin -i <source> -af "atrim=start=0:duration=12.0,asetpts=PTS-STARTPTS,afade=t=in:d=0.01,afade=t=out:st=11.990000:d=0.01,volume=35.6dB" -c:a pcm_s16le -bitexact -map_metadata -1 double-bass-e1-sustain.wav`, then `flac -8 -o Samples/Strings/double-bass-e1-sustain.flac double-bass-e1-sustain.wav` (measured peak before gain: -36.6 dBFS)
+- **SHA-256:** `3a6ac225f56daeec59da8e0a2ff720dc1a94c9dbbed2eacc82a298feaa369a36`
+- **Bytes:** 1015267
+- **Sample rate:** 44100 Hz
+- **Channels:** 2
+- **Seconds:** 12.000
+
+### Samples/Strings/cello-section-g2-tremolo.flac
+
+- **Source:** download
+- **URL:** https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Strings/Cello%20Section/trem/trem_G1_v2_1.wav
+- **VSCO 2: CE path:** `Strings/Cello Section/trem/trem_G1_v2_1.wav` at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Author:** Versilian Studios LLC (VSCO 2: CE; recorded by Sam Gossner & Simon Dalzell, sample cutting by Elan Hickler/Soundemote)
+- **License:** CC0-1.0; the statement is VSCO 2: CE's `LICENSE` (CC0 1.0 Universal) at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Download SHA-256:** `3409e8c7c88c19d428fd136dcaf0dfe2738d87d8a9f137afc7c28188c7fba426`
+- **Processing:** `ffmpeg -nostdin -i <source> -af "atrim=start=0:duration=7.0,asetpts=PTS-STARTPTS,afade=t=in:d=0.01,afade=t=out:st=6.990000:d=0.01,volume=-0.8dB" -c:a pcm_s24le -bitexact -map_metadata -1 cello-section-g2-tremolo.wav`, then `flac -8 -o Samples/Strings/cello-section-g2-tremolo.flac cello-section-g2-tremolo.wav` (measured peak before gain: -0.2 dBFS)
+- **SHA-256:** `9d466a6b9719d6f2558bd660a627be32547f61b05d1b8f426e9f8489cb19d645`
+- **Bytes:** 1228458
+- **Sample rate:** 44100 Hz
+- **Channels:** 2
+- **Seconds:** 7.000
+
+### Samples/Strings/violin-g5-tremolo.flac
+
+- **Source:** download
+- **URL:** https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Strings/Solo%20Violin/Trem/LLVln_trem_G4_v2_rr1.wav
+- **VSCO 2: CE path:** `Strings/Solo Violin/Trem/LLVln_trem_G4_v2_rr1.wav` at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Author:** Versilian Studios LLC (VSCO 2: CE; recorded by Sam Gossner & Simon Dalzell, sample cutting by Elan Hickler/Soundemote)
+- **License:** CC0-1.0; the statement is VSCO 2: CE's `LICENSE` (CC0 1.0 Universal) at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Download SHA-256:** `93990f54d3a2ab64c97c35cbe81b60260681dc65a56c3aa10de723b6e1ab3dcc`
+- **Processing:** `ffmpeg -nostdin -i <source> -af "atrim=start=0:duration=6.0,asetpts=PTS-STARTPTS,afade=t=in:d=0.01,afade=t=out:st=5.990000:d=0.01,volume=4.2dB" -c:a pcm_s16le -bitexact -map_metadata -1 violin-g5-tremolo.wav`, then `flac -8 -o Samples/Strings/violin-g5-tremolo.flac violin-g5-tremolo.wav` (measured peak before gain: -5.2 dBFS)
+- **SHA-256:** `a07797dcc73c0c98c4459b386961349242c7092aa7d77831925b6a8f2e2a0f89`
+- **Bytes:** 663820
+- **Sample rate:** 44100 Hz
+- **Channels:** 2
+- **Seconds:** 6.000
+
+### Samples/Strings/viola-section-d4-tremolo.flac
+
+- **Source:** download
+- **URL:** https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Strings/Viola%20Section/trem/Violas_trem_D3_v1_rr1.wav
+- **VSCO 2: CE path:** `Strings/Viola Section/trem/Violas_trem_D3_v1_rr1.wav` at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Author:** Versilian Studios LLC (VSCO 2: CE; recorded by Sam Gossner & Simon Dalzell, sample cutting by Elan Hickler/Soundemote)
+- **License:** CC0-1.0; the statement is VSCO 2: CE's `LICENSE` (CC0 1.0 Universal) at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Download SHA-256:** `a531890d9f97c98c2c47f84bc8e9413669a44392f988ab0703de37d06a18cc45`
+- **Processing:** `ffmpeg -nostdin -i <source> -af "atrim=start=0:duration=11.0,asetpts=PTS-STARTPTS,afade=t=in:d=0.01,afade=t=out:st=10.990000:d=0.01,volume=31.4dB" -c:a pcm_s16le -bitexact -map_metadata -1 viola-section-d4-tremolo.wav`, then `flac -8 -o Samples/Strings/viola-section-d4-tremolo.flac viola-section-d4-tremolo.wav` (measured peak before gain: -32.4 dBFS)
+- **SHA-256:** `4cb7f3e88ff1d986ebb3b3fb1b1f0067bb274a2b64a5519e11c0b6ca10b7f707`
+- **Bytes:** 996727
+- **Sample rate:** 44100 Hz
+- **Channels:** 2
+- **Seconds:** 11.000
+
+### Samples/Brass/horn-a3-sustain.flac
+
+- **Source:** download
+- **URL:** https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Brass/F%20Horn/sus/MOHorn_sus_A2_v1_1.wav
+- **VSCO 2: CE path:** `Brass/F Horn/sus/MOHorn_sus_A2_v1_1.wav` at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Author:** Versilian Studios LLC (VSCO 2: CE; recorded by Sam Gossner & Simon Dalzell, sample cutting by Elan Hickler/Soundemote)
+- **License:** CC0-1.0; the statement is VSCO 2: CE's `LICENSE` (CC0 1.0 Universal) at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Download SHA-256:** `897ffa7cfdf4e0413e4c80e7fa935f28e0a0971691e112f1516c6102da61809f`
+- **Processing:** `ffmpeg -nostdin -i <source> -af "atrim=start=0:duration=14.5,asetpts=PTS-STARTPTS,afade=t=in:d=0.01,afade=t=out:st=14.490000:d=0.01,volume=21.6dB" -c:a pcm_s16le -bitexact -map_metadata -1 horn-a3-sustain.wav`, then `flac -8 -o Samples/Brass/horn-a3-sustain.flac horn-a3-sustain.wav` (measured peak before gain: -22.6 dBFS)
+- **SHA-256:** `bc1c798519d09d6e546cea8e950f6b747afb65b0681f31c97efcb89b19f37337`
+- **Bytes:** 830604
+- **Sample rate:** 44100 Hz
+- **Channels:** 2
+- **Seconds:** 14.500
+
+### Samples/Brass/horn-ds4-muted.flac
+
+- **Source:** download
+- **URL:** https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Brass/F%20Horn/mute/MOHorn_mute_D%233_v1_1.wav
+- **VSCO 2: CE path:** `Brass/F Horn/mute/MOHorn_mute_D#3_v1_1.wav` at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Author:** Versilian Studios LLC (VSCO 2: CE; recorded by Sam Gossner & Simon Dalzell, sample cutting by Elan Hickler/Soundemote)
+- **License:** CC0-1.0; the statement is VSCO 2: CE's `LICENSE` (CC0 1.0 Universal) at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Download SHA-256:** `2e86b4a55c893e045dc190cd3afe9bb1029ea86097a4cb3ecee8aeaff792fa0c`
+- **Processing:** `ffmpeg -nostdin -i <source> -af "atrim=start=0:duration=12.0,asetpts=PTS-STARTPTS,afade=t=in:d=0.01,afade=t=out:st=11.990000:d=0.01,volume=29.7dB" -c:a pcm_s16le -bitexact -map_metadata -1 horn-ds4-muted.wav`, then `flac -8 -o Samples/Brass/horn-ds4-muted.flac horn-ds4-muted.wav` (measured peak before gain: -30.7 dBFS)
+- **SHA-256:** `953f21ba57104b06163412ac00fdbfabf9122c8667de66325dbfab9ea3484ed3`
+- **Bytes:** 896586
+- **Sample rate:** 44100 Hz
+- **Channels:** 2
+- **Seconds:** 12.000
+
+### Samples/Brass/trumpet-as4-sustain.flac
+
+- **Source:** download
+- **URL:** https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Brass/Trumpet/sus/Sum_SHTrumpet_sus_A%233_v1_rr1.wav
+- **VSCO 2: CE path:** `Brass/Trumpet/sus/Sum_SHTrumpet_sus_A#3_v1_rr1.wav` at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Author:** Versilian Studios LLC (VSCO 2: CE; recorded by Sam Gossner & Simon Dalzell, sample cutting by Elan Hickler/Soundemote)
+- **License:** CC0-1.0; the statement is VSCO 2: CE's `LICENSE` (CC0 1.0 Universal) at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Download SHA-256:** `0a432ceeddcecea962e2e0ebb5c3e80be3d3f251d38c5d4ddc0df4089e97351b`
+- **Processing:** `ffmpeg -nostdin -i <source> -af "atrim=start=0:duration=14.0,asetpts=PTS-STARTPTS,afade=t=in:d=0.01,afade=t=out:st=13.990000:d=0.01,volume=18.8dB" -c:a pcm_s16le -bitexact -map_metadata -1 trumpet-as4-sustain.wav`, then `flac -8 -o Samples/Brass/trumpet-as4-sustain.flac trumpet-as4-sustain.wav` (measured peak before gain: -19.8 dBFS)
+- **SHA-256:** `b9e79ff48439a1fc5950a4bce868863a221000a9c8b5e58fcf499b349e46afc6`
+- **Bytes:** 1156518
+- **Sample rate:** 44100 Hz
+- **Channels:** 2
+- **Seconds:** 14.000
+
+### Samples/Brass/trumpet-d5-harmon-mute.flac
+
+- **Source:** download
+- **URL:** https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Brass/Trumpet/harmonM-sus/Sum_SHTrumpet_harmonM-sus_D4_v1_rr1.wav
+- **VSCO 2: CE path:** `Brass/Trumpet/harmonM-sus/Sum_SHTrumpet_harmonM-sus_D4_v1_rr1.wav` at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Author:** Versilian Studios LLC (VSCO 2: CE; recorded by Sam Gossner & Simon Dalzell, sample cutting by Elan Hickler/Soundemote)
+- **License:** CC0-1.0; the statement is VSCO 2: CE's `LICENSE` (CC0 1.0 Universal) at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Download SHA-256:** `12dfc0823d1c8cb9baaf20315decd3262fbac4d2cbd0df18e39c8d9279d4126d`
+- **Processing:** `ffmpeg -nostdin -i <source> -af "atrim=start=0:duration=8.5,asetpts=PTS-STARTPTS,afade=t=in:d=0.01,afade=t=out:st=8.490000:d=0.01,volume=32.3dB" -c:a pcm_s16le -bitexact -map_metadata -1 trumpet-d5-harmon-mute.wav`, then `flac -8 -o Samples/Brass/trumpet-d5-harmon-mute.flac trumpet-d5-harmon-mute.wav` (measured peak before gain: -33.3 dBFS)
+- **SHA-256:** `1898110f9e53733179c72c1f8f8d49e804ace9b414ead6b83a0ceae18ae81928`
+- **Bytes:** 921846
+- **Sample rate:** 44100 Hz
+- **Channels:** 2
+- **Seconds:** 8.500
+
+### Samples/Brass/trombone-f3-sustain.flac
+
+- **Source:** download
+- **URL:** https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Brass/Tenor%20Trombone/sus/tenortbn_sus_F2_v1_1.wav
+- **VSCO 2: CE path:** `Brass/Tenor Trombone/sus/tenortbn_sus_F2_v1_1.wav` at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Author:** Versilian Studios LLC (VSCO 2: CE; recorded by Sam Gossner & Simon Dalzell, sample cutting by Elan Hickler/Soundemote)
+- **License:** CC0-1.0; the statement is VSCO 2: CE's `LICENSE` (CC0 1.0 Universal) at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Download SHA-256:** `c9d6777e444e1076000b0dbbacce691739ce7f7f9968b410f29501e38214a764`
+- **Processing:** `ffmpeg -nostdin -i <source> -af "atrim=start=0:duration=14.0,asetpts=PTS-STARTPTS,afade=t=in:d=0.01,afade=t=out:st=13.990000:d=0.01,volume=41.8dB" -c:a pcm_s16le -bitexact -map_metadata -1 trombone-f3-sustain.wav`, then `flac -8 -o Samples/Brass/trombone-f3-sustain.flac trombone-f3-sustain.wav` (measured peak before gain: -42.8 dBFS)
+- **SHA-256:** `8a7e05db8965740e8b21ab6d3a4a782b15eac3f1b48ec1ea85b9b2671df7595b`
+- **Bytes:** 1383141
+- **Sample rate:** 44100 Hz
+- **Channels:** 2
+- **Seconds:** 14.000
+
+### Samples/Brass/tuba-f2-sustain.flac
+
+- **Source:** download
+- **URL:** https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Brass/Tuba/sus/Tuba3_sus_F1_v1_rr1_Mid.wav
+- **VSCO 2: CE path:** `Brass/Tuba/sus/Tuba3_sus_F1_v1_rr1_Mid.wav` at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Author:** Versilian Studios LLC (VSCO 2: CE; recorded by Sam Gossner & Simon Dalzell, sample cutting by Elan Hickler/Soundemote)
+- **License:** CC0-1.0; the statement is VSCO 2: CE's `LICENSE` (CC0 1.0 Universal) at commit `440300901dfe9275fd84e0b7763af1f8443ae62e`
+- **Download SHA-256:** `ae5f0afd08dfd4439f60b647859ef1eb4897f12804d3a729b2f3d12096a0fdb5`
+- **Processing:** `ffmpeg -nostdin -i <source> -af "atrim=start=0:duration=9.3,asetpts=PTS-STARTPTS,afade=t=in:d=0.01,afade=t=out:st=9.290000:d=0.01,volume=29.7dB" -c:a pcm_s16le -bitexact -map_metadata -1 tuba-f2-sustain.wav`, then `flac -8 -o Samples/Brass/tuba-f2-sustain.flac tuba-f2-sustain.wav` (measured peak before gain: -30.7 dBFS)
+- **SHA-256:** `305f1f67763f5511b468676a2c0ff02cb2e9711fc8eab8f0a07bfcc0da699705`
+- **Bytes:** 632405
+- **Sample rate:** 44100 Hz
+- **Channels:** 2
+- **Seconds:** 9.300

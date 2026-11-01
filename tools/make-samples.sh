@@ -5,9 +5,10 @@
 #
 # Makes Samples/ and PROVENANCE.md from tools/select.tsv, one row per shipped file:
 #
-#   GG_RENDER=/path/to/gg-render GG_RENDER_COMMIT=<sha> tools/make-samples.sh
+#   [GG_RENDER=/path/to/gg-render GG_RENDER_COMMIT=<sha>] tools/make-samples.sh [--rebuild]
 #
-# A `download` row is fetched from the Versilian Community Sample Library (VCSL, CC0-1.0) at
+# A `download` row is fetched from the Versilian Community Sample Library (VCSL, CC0-1.0), and a
+# `download-vsco` row from VS Chamber Orchestra: Community Edition (VSCO 2: CE, CC0-1.0), each at
 # the one commit pinned below, by raw URL, and refused unless its SHA-256 is the row's. A
 # `generated` row is rendered by Giga Grains' own gg-render from its spec in tools/generated/
 # (GG_RENDER names the binary, GG_RENDER_COMMIT the giga-grains commit it was built from). Then
@@ -15,6 +16,13 @@
 # over 10 ms, peak-normalized to -1 dBFS (ffmpeg's volumedetect, then volume=<gain>dB) and
 # encoded with `flac -8`. The script writes PROVENANCE.md itself, one section per row, so the
 # record and the files can't drift. Generated rows that read recorded files come after them.
+#
+# A release is a strict superset of the one before it: a row whose file PROVENANCE.md already
+# records, with the file in Samples/ at the recorded SHA-256, is kept as it is (its bytes and its
+# section, word for word), and only the other rows are made, so gg-render needs setting only when
+# a generated row is new. A recorded file whose bytes differ, and a file in Samples/ that no row
+# names, are errors. `--rebuild` instead deletes Samples/ and makes every row afresh (a new
+# gg-render or ffmpeg can change the bytes of files an earlier release shipped).
 #
 # Downloads and intermediate WAVs go to $MAKE_SAMPLES_WORK (default tools/.work, which git
 # ignores); a download already there with the right hash costs no network. Needs bash 3.2+,
@@ -25,11 +33,27 @@ set -euo pipefail
 VCSL_REPO=sgossner/VCSL
 VCSL_COMMIT=c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e
 VCSL_AUTHOR="Versilian Studios LLC (VCSL contributors)"
+VSCO_REPO=sgossner/VSCO-2-CE
+VSCO_COMMIT=440300901dfe9275fd84e0b7763af1f8443ae62e
+# As its Readme.txt ("VSCO 2: CE by Versilian Studios", "Sam Gossner, Versilian Studios LLC.")
+# and README.md ("Recorded by Sam Gossner & Simon Dalzell; Sample Cutting by Elan
+# Hickler/Soundemote") name them.
+VSCO_AUTHOR="Versilian Studios LLC (VSCO 2: CE; recorded by Sam Gossner & Simon Dalzell, sample cutting by Elan Hickler/Soundemote)"
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 select_tsv="$repo_root/tools/select.tsv"
 work="${MAKE_SAMPLES_WORK:-$repo_root/tools/.work}"
 provenance="$repo_root/PROVENANCE.md"
+
+rebuild=0
+case "${1:-}" in
+    "") ;;
+    --rebuild) rebuild=1 ;;
+    *)
+        echo "usage: $0 [--rebuild]" >&2
+        exit 2
+        ;;
+esac
 
 die() {
     echo "$0: $*" >&2
@@ -46,12 +70,23 @@ elif command -v sha256sum >/dev/null 2>&1; then
 else
     die "needs shasum or sha256sum"
 fi
-if grep -q '^generated' "$select_tsv"; then
+need_gg_render() {
     [[ -n "${GG_RENDER:-}" && -x "${GG_RENDER:-}" ]] || die "set GG_RENDER to a gg-render binary"
     [[ "${GG_RENDER_COMMIT:-}" =~ ^[0-9a-f]{40}$ ]] || die "set GG_RENDER_COMMIT to its 40-hex commit"
-fi
+}
 
-# Percent-encodes a VCSL path for its raw URL ('/' kept).
+# Prints the PROVENANCE.md section of Samples/$2 in the file $1, from its `###` line to the line
+# before the next (trailing blank lines dropped); nothing if there is none.
+recorded_section() {
+    awk -v head="### Samples/$2" '
+        $0 == head { on = 1; n = 0 }
+        on && /^### / && $0 != head { exit }
+        on { line[++n] = $0 }
+        END { while (n > 0 && line[n] == "") n--; for (i = 1; i <= n; i++) print line[i] }
+    ' "$1"
+}
+
+# Percent-encodes a library path for its raw URL ('/' kept).
 urlencode() {
     local LC_ALL=C s="$1" out="" c i
     for ((i = 0; i < ${#s}; i++)); do
@@ -67,41 +102,83 @@ urlencode() {
 ffmpeg_version="$(ffmpeg -version | head -n 1 | awk '{print $3}')"
 flac_version="$(flac --version | awk '{print $2}')"
 
-rm -rf "$repo_root/Samples"
 mkdir -p "$work/downloads" "$work/generated" "$work/wav"
+# The record is written beside the work and moved into place only when every row is done, so a
+# failed run leaves the last good PROVENANCE.md, and the files it records, as they were.
+previous="$work/PROVENANCE.previous.md"
+record="$work/PROVENANCE.md.new"
+rm -f "$previous" "$record"
+if [[ "$rebuild" == 1 ]]; then
+    rm -rf "$repo_root/Samples"
+elif [[ -f "$provenance" ]]; then
+    cp "$provenance" "$previous"
+fi
 
-cat >"$provenance" <<EOF
+cat >"$record" <<EOF
 # Provenance
 
 Every file under \`Samples/\` is listed here, one section per file, with where it came from, its
 license and how it was made. \`tools/make-samples.sh\` writes this file from \`tools/select.tsv\`
 as it makes the samples, so the record and the files agree.
 
-- **Downloads** come from the [Versilian Community Sample Library](https://github.com/$VCSL_REPO)
-  (VCSL) at commit \`$VCSL_COMMIT\`, whose \`LICENSE\` is the CC0-1.0 legal code
-  (https://github.com/$VCSL_REPO/blob/$VCSL_COMMIT/LICENSE) and whose README states "This
-  collection is under a Creative Commons 0 license". Each was fetched by its raw URL at that
-  commit and checked against the SHA-256 recorded below.
+- **Downloads** come from two libraries by Versilian Studios, each fetched by its raw URL at
+  one commit and checked against the SHA-256 recorded below:
+  - the [Versilian Community Sample Library](https://github.com/$VCSL_REPO) (VCSL) at commit
+    \`$VCSL_COMMIT\`, whose \`LICENSE\` is the CC0-1.0 legal code
+    (https://github.com/$VCSL_REPO/blob/$VCSL_COMMIT/LICENSE) and whose README states "This
+    collection is under a Creative Commons 0 license";
+  - [VS Chamber Orchestra: Community Edition](https://github.com/$VSCO_REPO) (VSCO 2: CE) at
+    commit \`$VSCO_COMMIT\`, whose \`LICENSE\` is the CC0 1.0 Universal legal code
+    (https://github.com/$VSCO_REPO/blob/$VSCO_COMMIT/LICENSE). Its \`Readme.txt\` asks for
+    credit to "Versilian Studios/Sam Gossner, and/or Ivy Audio/Simon Dalzell where applicable",
+    which each of its sections below gives, and asks that the samples not be sold directly:
+    this collection is free.
 - **Generated** files were rendered by Giga Grains' own \`gg-render\`
   (https://github.com/sethbc/giga-grains) from the spec in \`tools/generated/\`, by the Giga
   Grains authors, who dedicate them to the public domain under CC0-1.0 (\`LICENSE\`).
 - **Processing** (every file): trimmed, faded in and out over 10 ms, peak-normalized to -1 dBFS
   (the gain is -1 dB minus ffmpeg's \`volumedetect\` maximum of the trimmed, faded audio) and
   encoded with \`flac -8\`, with ffmpeg $ffmpeg_version and flac $flac_version. Rates and channels
-  are the source's.
+  are the source's. A file an earlier release shipped keeps its bytes and its section here.
 
 Nothing here is a recording of the Giga Grains authors', and nothing lacks a CC0 statement.
 EOF
 
 count=0
+kept=0
+listed=""
 while IFS=$'\t' read -r kind output source expected start length; do
     [[ -z "$kind" || "$kind" == \#* ]] && continue
     [[ "$output" =~ ^[A-Z][a-z]+/[a-z0-9-]+\.flac$ ]] || die "bad output name: $output"
     name="$(basename "$output" .flac)"
+    listed+="Samples/$output"$'\n'
+
+    # A file an earlier release recorded keeps its bytes and its section.
+    if [[ -f "$previous" ]]; then
+        section="$(recorded_section "$previous" "$output")"
+        if [[ -n "$section" ]]; then
+            recorded="$(printf '%s\n' "$section" | sed -n 's/^- \*\*SHA-256:\*\* `\([0-9a-f]\{64\}\)`$/\1/p')"
+            [[ -n "$recorded" ]] || die "Samples/$output: its PROVENANCE.md section records no SHA-256"
+            [[ -f "$repo_root/Samples/$output" ]] || die "Samples/$output is recorded but missing (--rebuild remakes every row)"
+            actual="$(sha256 "$repo_root/Samples/$output")"
+            [[ "$actual" == "$recorded" ]] || die "Samples/$output: SHA-256 $actual, recorded $recorded"
+            {
+                echo
+                printf '%s\n' "$section"
+            } >>"$record"
+            kept=$((kept + 1))
+            echo "kept Samples/$output"
+            continue
+        fi
+    fi
 
     case "$kind" in
-        download)
-            url="https://raw.githubusercontent.com/$VCSL_REPO/$VCSL_COMMIT/$(urlencode "$source")"
+        download | download-vsco)
+            if [[ "$kind" == download ]]; then
+                url="https://raw.githubusercontent.com/$VCSL_REPO/$VCSL_COMMIT/$(urlencode "$source")"
+            else
+                url="https://raw.githubusercontent.com/$VSCO_REPO/$VSCO_COMMIT/$(urlencode "$source")"
+            fi
             input="$work/downloads/$expected.wav"
             if [[ ! -f "$input" || "$(sha256 "$input")" != "$expected" ]]; then
                 echo "download: $source"
@@ -115,6 +192,7 @@ while IFS=$'\t' read -r kind output source expected start length; do
             fi
             ;;
         generated)
+            need_gg_render
             [[ -f "$repo_root/$source" ]] || die "no spec $source"
             input="$work/generated/$name.wav"
             echo "render: $source"
@@ -162,6 +240,13 @@ while IFS=$'\t' read -r kind output source expected start length; do
             echo "- **Author:** $VCSL_AUTHOR"
             echo "- **License:** CC0-1.0; the statement is VCSL's \`LICENSE\` at commit \`$VCSL_COMMIT\`"
             echo "- **Download SHA-256:** \`$expected\`"
+        elif [[ "$kind" == download-vsco ]]; then
+            echo "- **Source:** download"
+            echo "- **URL:** $url"
+            echo "- **VSCO 2: CE path:** \`$source\` at commit \`$VSCO_COMMIT\`"
+            echo "- **Author:** $VSCO_AUTHOR"
+            echo "- **License:** CC0-1.0; the statement is VSCO 2: CE's \`LICENSE\` (CC0 1.0 Universal) at commit \`$VSCO_COMMIT\`"
+            echo "- **Download SHA-256:** \`$expected\`"
         else
             reads="$(sed -n 's/.*"path": *"\([^"]*\)".*/\1/p' "$repo_root/$source" | tr '\n' ' ')"
             echo "- **Source:** generated"
@@ -179,9 +264,19 @@ while IFS=$'\t' read -r kind output source expected start length; do
         echo "- **Sample rate:** $rate Hz"
         echo "- **Channels:** $channels"
         echo "- **Seconds:** $seconds"
-    } >>"$provenance"
+    } >>"$record"
     count=$((count + 1))
     echo "made Samples/$output ($seconds s, $bytes bytes)"
 done <"$select_tsv"
 
-echo "made $count files; PROVENANCE.md written"
+# Every file in Samples/ is a row's.
+while IFS= read -r file; do
+    [[ -z "$file" ]] && continue
+    case "$listed" in
+        "$file"$'\n'* | *$'\n'"$file"$'\n'*) ;;
+        *) die "$file is in Samples/ but no row of tools/select.tsv names it" ;;
+    esac
+done < <(cd "$repo_root" && find Samples -type f ! -name .DS_Store | LC_ALL=C sort)
+
+mv "$record" "$provenance"
+echo "made $count files, kept $kept; PROVENANCE.md written"

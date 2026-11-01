@@ -1,4 +1,4 @@
-# kind	output (under Samples/)	source (a VCSL path, or a spec)	SHA-256 of the download (- if generated)	start (s)	length (s, - for all)
+# kind	output (under Samples/)	source (a VCSL path for download, a VSCO 2: CE path for download-vsco, or a spec)	SHA-256 of the download (- if generated)	start (s)	length (s, - for all)
 download	Strings/psaltery-c4-bowed.flac	Chordophones/Zithers/Psaltery, Bowed and Plucked/LongBow/BowedPsaltery_C4_Main_LongBow_rr1.wav	57f455c9412f2d642e8d423207aa7a12f48dde77293283d058636b08cd8fdfb0	0	7.3
 download	Strings/dan-tranh-b2-tremolo.flac	Chordophones/Zithers/Dan Tranh/Tremolo/B2_Trem_1.wav	7a0437a1911cebdc212500da927c1bdd0674e31439704ba6c928d93b27e47ce7	0	11.6
 download	Winds/tenor-sax-c3-sustain.flac	Aerophones/Reed Aerophones/Tenor Saxophone/Non-Vibrato/BrettTenor_NV_Main_C3_vl2_rr1.wav	4afeef41e7f3a5df8c47a3f31389b5948837fe8b21c9e3e9e135829e44050677	0	7.0
@@ -36,3 +36,18 @@ generated	Generated/drone-organ.flac	tools/generated/drone-organ.json	-	0	-
 generated	Generated/drone-glass.flac	tools/generated/drone-glass.json	-	0	-
 generated	Generated/drone-vibraphone-frozen.flac	tools/generated/drone-vibraphone-frozen.json	-	0	-
 generated	Generated/drone-sine-cluster.flac	tools/generated/drone-sine-cluster.json	-	0	-
+# v2: VS Chamber Orchestra: Community Edition (VSCO 2: CE), strings and brass; names give the sounding pitch (middle C is C4)
+download-vsco	Strings/violin-c4-vibrato.flac	Strings/Solo Violin/Arco Vib/LLVln_ArcoVib_C4_p.wav	592ebf4404ccafc7164c13cc543911ba9a2fe5f5e70dbb200807e2ae37b25035	0	13.0
+download-vsco	Strings/violin-section-g3-vibrato.flac	Strings/Violin Section/susVib/VlnEns_susVib_G2_v2.wav	c0b06a23f0245c042f0609dc0db704adc14bfc9ea8a34cb5c97d80096715a0e6	0	12.0
+download-vsco	Strings/viola-section-c3-vibrato.flac	Strings/Viola Section/susvib/ViolaEns_susvib_C2_v2_1.wav	09db4ed2c8eda02d1f6a27258a2292b56e65e94ecc0337265bbbac5d9978dc92	0	8.0
+download-vsco	Strings/cello-section-c2-vibrato.flac	Strings/Cello Section/susvib/susvib_C1_v3_1.wav	19195ab85ab71626bd11e7100febdaeeba1c237ff5887b934fd0ffd8dfad82cb	0	8.0
+download-vsco	Strings/double-bass-e1-sustain.flac	Strings/Solo Contrabass/SusNV/BKCtbss_SusNV_E0_v1_rr1.wav	b510c6c2eb4fb0acba5eaaaa703ebe19025cad3749f645c41f883e4217b338fa	0	12.0
+download-vsco	Strings/cello-section-g2-tremolo.flac	Strings/Cello Section/trem/trem_G1_v2_1.wav	3409e8c7c88c19d428fd136dcaf0dfe2738d87d8a9f137afc7c28188c7fba426	0	7.0
+download-vsco	Strings/violin-g5-tremolo.flac	Strings/Solo Violin/Trem/LLVln_trem_G4_v2_rr1.wav	93990f54d3a2ab64c97c35cbe81b60260681dc65a56c3aa10de723b6e1ab3dcc	0	6.0
+download-vsco	Strings/viola-section-d4-tremolo.flac	Strings/Viola Section/trem/Violas_trem_D3_v1_rr1.wav	a531890d9f97c98c2c47f84bc8e9413669a44392f988ab0703de37d06a18cc45	0	11.0
+download-vsco	Brass/horn-a3-sustain.flac	Brass/F Horn/sus/MOHorn_sus_A2_v1_1.wav	897ffa7cfdf4e0413e4c80e7fa935f28e0a0971691e112f1516c6102da61809f	0	14.5
+download-vsco	Brass/horn-ds4-muted.flac	Brass/F Horn/mute/MOHorn_mute_D#3_v1_1.wav	2e86b4a55c893e045dc190cd3afe9bb1029ea86097a4cb3ecee8aeaff792fa0c	0	12.0
+download-vsco	Brass/trumpet-as4-sustain.flac	Brass/Trumpet/sus/Sum_SHTrumpet_sus_A#3_v1_rr1.wav	0a432ceeddcecea962e2e0ebb5c3e80be3d3f251d38c5d4ddc0df4089e97351b	0	14.0
+download-vsco	Brass/trumpet-d5-harmon-mute.flac	Brass/Trumpet/harmonM-sus/Sum_SHTrumpet_harmonM-sus_D4_v1_rr1.wav	12dfc0823d1c8cb9baaf20315decd3262fbac4d2cbd0df18e39c8d9279d4126d	0	8.5
+download-vsco	Brass/trombone-f3-sustain.flac	Brass/Tenor Trombone/sus/tenortbn_sus_F2_v1_1.wav	c9d6777e444e1076000b0dbbacce691739ce7f7f9968b410f29501e38214a764	0	14.0
+download-vsco	Brass/tuba-f2-sustain.flac	Brass/Tuba/sus/Tuba3_sus_F1_v1_rr1_Mid.wav	ae5f0afd08dfd4439f60b647859ef1eb4897f12804d3a729b2f3d12096a0fdb5	0	9.3
